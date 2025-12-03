@@ -11,10 +11,10 @@ def count_unique_bykv(text: str) -> int:
 
     count = Counter(text)
 
-    f = count.values()
+    fCount = count.values()
 
     u_count = 0
-    for i in f:
+    for i in fCount:
         if i == 1:
             u_count += 1
     return u_count
