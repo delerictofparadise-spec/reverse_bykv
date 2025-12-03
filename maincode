@@ -35,7 +35,7 @@ def main():
         parser.error("--string или --file")
 
     print(count_unique_bykv(text))
-
+ 
 
 if __name__ == "__main__":   # pragma: no cover
     main()
