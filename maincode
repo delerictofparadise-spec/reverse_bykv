@@ -2,22 +2,24 @@ import argparse
 import pathlib
 from collections import Counter
 from functools import lru_cache
-@lru_cache(maxsize=128)
 
+
+@lru_cache(maxsize=128)
 def count_unique_bykv(text: str) -> int:
 
     if not isinstance(text, str):
         raise TypeError('text must be a string')
 
-    count = Counter(text)
+    char_counter = Counter(text)
 
-    fCount = count.values()
+    frequencies = char_counter.values()
 
-    u_count = 0
-    for i in fCount:
-        if i == 1:
-            u_count += 1
-    return u_count
+    unique_count = 0
+    for freq in frequencies:
+        if freq == 1:
+            unique_count += 1
+    return unique_count
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -35,7 +37,7 @@ def main():
         parser.error("--string или --file")
 
     print(count_unique_bykv(text))
- 
+
 
 if __name__ == "__main__":   # pragma: no cover
     main()
