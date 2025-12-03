@@ -1,18 +1,17 @@
 import argparse
+import pathlib
 from collections import Counter
 from functools import lru_cache
-import pathlib
-
 @lru_cache(maxsize=128)
 
-def count_unique_bykv(text:str) -> int:
+def count_unique_bykv(text: str) -> int:
 
     if not isinstance(text, str):
-        raise ValueError('text must be a string')
+        raise TypeError('text must be a string')
 
-    cnt = Counter(text)
+    count = Counter(text)
 
-    f = cnt.values()
+    f = count.values()
 
     u_count = 0
     for i in f:
