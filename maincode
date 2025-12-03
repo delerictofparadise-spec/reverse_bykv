@@ -1,0 +1,43 @@
+import argparse
+import pathlib
+from collections import Counter
+from functools import lru_cache
+
+
+@lru_cache(maxsize=128)
+def count_unique_bykv(text: str) -> int:
+
+    if not isinstance(text, str):
+        raise TypeError('text must be a string')
+
+    char_counter = Counter(text)
+
+    frequencies = char_counter.values()
+
+    unique_count = 0
+    for freq in frequencies:
+        if freq == 1:
+            unique_count += 1
+    return unique_count
+
+
+def main():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--string", type=str)
+    parser.add_argument("--file", type=str)
+
+    args = parser.parse_args()
+
+    if args.file:
+        text = pathlib.Path(args.file).read_text(encoding="utf-8")
+    elif args.string:
+        text = args.string
+    else:
+        parser.error("--string или --file")
+
+    print(count_unique_bykv(text))
+
+
+if __name__ == "__main__":   # pragma: no cover
+    main()
