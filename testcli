@@ -1,0 +1,15 @@
+import unittest
+from newabcf import count_unique_bykv
+
+class TestCountUniqueBykv(unittest.TestCase):
+    def test_abcde(self):
+        self.assertEqual(count_unique_bykv("abcde"), 5)
+
+    def test_aabbcc(self):
+        self.assertEqual(count_unique_bykv("aabbcc"), 0)
+
+    def test_abac(self):
+        self.assertEqual(count_unique_bykv("abac"), 2)
+
+if name == "main":
+    unittest.main()
